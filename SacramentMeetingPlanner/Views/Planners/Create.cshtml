@@ -1,0 +1,94 @@
+﻿@model SacramentMeetingPlanner.Models.Planner
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Planner</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Conducting" class="control-label"></label>
+                <input asp-for="Conducting" class="form-control" />
+                <span asp-validation-for="Conducting" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OpeningHymn" class="control-label"></label>
+                <input asp-for="OpeningHymn" class="form-control" />
+                <span asp-validation-for="OpeningHymn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invocation" class="control-label"></label>
+                <input asp-for="Invocation" class="form-control" />
+                <span asp-validation-for="Invocation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SacramentHymn" class="control-label"></label>
+                <input asp-for="SacramentHymn" class="form-control" />
+                <span asp-validation-for="SacramentHymn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IntermediateHymn" class="control-label"></label>
+                <input asp-for="IntermediateHymn" class="form-control" />
+                <span asp-validation-for="IntermediateHymn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClosingHymn" class="control-label"></label>
+                <input asp-for="ClosingHymn" class="form-control" />
+                <span asp-validation-for="ClosingHymn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Benediction" class="control-label"></label>
+                <input asp-for="Benediction" class="form-control" />
+                <span asp-validation-for="Benediction" class="text-danger"></span>
+            </div>
+
+            <div id="speakersList">
+                <div class="speaker-item">
+                    <input type="text" name="SpeakersTopics[0].Speaker" placeholder="Speaker Name" class="form-control" />
+                    <input type="text" name="SpeakersTopics[0].Topic" placeholder="Speaker Topic" class="form-control" />
+                </div>
+            </div>
+            <button type="button" id="addSpeaker">Add Speaker</button>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        let speakerIndex = 1;
+        document.getElementById('addSpeaker').addEventListener('click', () => {
+            const speakersList = document.getElementById('speakersList');
+            const newSpeaker = document.createElement('div');
+            newSpeaker.className = 'speaker-item';
+            newSpeaker.innerHTML = `
+                <input type="text" name="SpeakersTopics[${speakerIndex}].Speaker" placeholder="Speaker Name" class="form-control" />
+                <input type="text" name="SpeakersTopics[${speakerIndex}].Topic" placeholder="Speaker Topic" class="form-control" />
+            `;
+            speakersList.appendChild(newSpeaker);
+            speakerIndex++;
+        });
+    </script>
+}
