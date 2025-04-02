@@ -1,0 +1,86 @@
+﻿@model SacramentMeetingPlanner.Models.Planner
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Planner</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Conducting)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Conducting)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OpeningHymn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OpeningHymn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invocation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invocation)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SacramentHymn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SacramentHymn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IntermediateHymn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IntermediateHymn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ClosingHymn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ClosingHymn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Benediction)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Benediction)
+        </dd>
+        <dt class="col-sm-2">
+            Speakers and Topics
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.SpeakersTopics != null && Model.SpeakersTopics.Any())
+            {
+                <ul>
+                    @foreach (var speaker in Model.SpeakersTopics)
+                    {
+                        <li><strong>@speaker.Speaker</strong>: @speaker.Topic</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>No speakers or topics provided.</p>
+            }
+        </dd>
+
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.PlannerId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
