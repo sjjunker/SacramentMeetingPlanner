@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -66,6 +68,23 @@ namespace SacramentMeetingPlanner.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Planner planner)
         {
+            planner.SpeakersTopics = planner.SpeakersTopics
+                .Where(st => 
+                    !string.IsNullOrEmpty(st.Speaker) || !string.IsNullOrEmpty(st.Topic)
+                    )
+                .ToList();
+            foreach(SpeakerTopic spk in planner.SpeakersTopics)
+            {
+                if(string.IsNullOrEmpty(spk.Speaker))
+                {
+                    spk.Speaker = "None Selected";
+                }
+                else if(string.IsNullOrEmpty(spk.Topic))
+                {
+                    spk.Topic = "None Selected";
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 // Add the planner to the database
@@ -104,9 +123,26 @@ namespace SacramentMeetingPlanner.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Planner planner)
         {
+
             if (id != planner.PlannerId)
             {
                 return NotFound();
+            }
+
+            planner.SpeakersTopics = planner.SpeakersTopics.Where(
+                st => !string.IsNullOrEmpty(st.Speaker) || !string.IsNullOrEmpty(st.Topic))
+                .ToList();
+
+            foreach (SpeakerTopic spk in planner.SpeakersTopics)
+            {
+                if (string.IsNullOrEmpty(spk.Speaker))
+                {
+                    spk.Speaker = "None Selected";
+                }
+                else if (string.IsNullOrEmpty(spk.Topic))
+                {
+                    spk.Topic = "None Selected";
+                }
             }
 
             if (ModelState.IsValid)
