@@ -33,13 +33,31 @@ namespace SacramentMeetingPlanner.Models
         [Required]
         public List<SpeakerTopic> SpeakersTopics { get; set; } = new List<SpeakerTopic>();
 
+        public override string ToString()
+        {
+            string formatted = $"PlannerId: {PlannerId}, Conduction:{Conducting}, OpeningHymn: {OpeningHymn}, Invocation{Invocation}\n"+
+                $"SacramentHymn: {SacramentHymn}, IntermediateHymn: {IntermediateHymn}, ClosingHymn: {ClosingHymn}, Benediction: {Benediction}\n";
+            foreach(SpeakerTopic i in SpeakersTopics)
+            {
+                formatted += i.ToString();
+                formatted += "\n";
+            }
+            return formatted;
+        }
+
     }
 
     public class SpeakerTopic
     {
         public int SpeakerTopicId { get; set; }
         public int PlannerId { get; set; }
+
         public string? Speaker { get; set; }
         public string? Topic { get; set; }
+
+        public override string ToString()
+        {
+            return $"SpeakerTopicId:{this.SpeakerTopicId}, PlannerId: {this.PlannerId}, Speaker: {this.Speaker}, Topic: {this.Topic}";
+        }
     }
 }

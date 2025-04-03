@@ -54,10 +54,7 @@
             </div>
 
             <div id="speakersList">
-                <div class="speaker-item">
-                    <input type="text" name="SpeakersTopics[0].Speaker" placeholder="Speaker Name" class="form-control" />
-                    <input type="text" name="SpeakersTopics[0].Topic" placeholder="Speaker Topic" class="form-control" />
-                </div>
+
             </div>
             <button type="button" id="addSpeaker">Add Speaker</button>
 
@@ -78,12 +75,13 @@
     }
 
     <script>
-        let speakerIndex = 1;
+        let speakerIndex = 0;
         document.getElementById('addSpeaker').addEventListener('click', () => {
             const speakersList = document.getElementById('speakersList');
             const newSpeaker = document.createElement('div');
             newSpeaker.className = 'speaker-item';
             newSpeaker.innerHTML = `
+                <label class="control-label">Speaker ${(speakerIndex+1)}</label>
                 <input type="text" name="SpeakersTopics[${speakerIndex}].Speaker" placeholder="Speaker Name" class="form-control" />
                 <input type="text" name="SpeakersTopics[${speakerIndex}].Topic" placeholder="Speaker Topic" class="form-control" />
             `;
