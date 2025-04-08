@@ -41,3 +41,15 @@ body {
     background-color:aquamarine !important;
 }
 
+form {
+    margin-bottom:2em;
+}
+#addSpeaker{
+    margin-top:1em;
+    margin-bottom:1em;
+}
+
+.speaker-item {
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
