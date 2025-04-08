@@ -18,7 +18,12 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-top: 30px margin-bottom: 60px;
+    background-color: lightskyblue;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
@@ -28,14 +33,12 @@ body {
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
-<<<<<<< Updated upstream
-}
-=======
 }
 
 .navbar{
     background-color:aquamarine !important;
 }
+
 form {
     margin-bottom:2em;
 }
@@ -48,5 +51,3 @@ form {
     margin-top: .5em;
     margin-bottom: .5em;
 }
-
->>>>>>> Stashed changes
